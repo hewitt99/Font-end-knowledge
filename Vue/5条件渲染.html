@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>条件渲染</title>
+</head>
+
+<body>
+  <div id="app">
+    <div style="width: 100px;height: 100px; background-color: aqua;" v-show="flag"></div>
+    <div v-if="loginType === 'username'">
+      <label>Username</label>
+      <input placeholder="Enter your username">
+    </div>
+    <div v-else>
+      <label>Email</label>
+      <input placeholder="Enter your email address">
+    </div>
+
+    <button v-on:click="changeType">切换</button>
+
+    <template v-if="ok">
+      <h1>Title</h1>
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>
+    </template>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+        loginType: 'username',
+        ok: true,
+        flag: true
+      }
+    },
+    methods: {
+      changeType: function () {
+        this.loginType = (this.loginType === 'username') ? 'email' : 'username';
+        this.flag = (this.flag) ? false : true;
+      }
+    }
+  })
+</script>
+
+<!-- v-show为改元素添加css-display：none
+     v-if是删除添加dom元素，是真正的条件渲染
+     区别：v-if会触发生命周期，v-show不会触发生命周期
+     v-if有更高的切换消耗，v-show更高的初始渲染消耗
+
+     dispaly：none有重绘重排css控制，占据空间会消失
+     visibility：hidden只触发重绘，占据空间
+-->
+
+</html>

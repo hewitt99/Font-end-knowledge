@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex</title>
+</head>
+<style>
+  #container {
+    border: 5px solid red;
+    display: flex;
+    width: 500px;
+    height: 200px;
+  }
+
+  .child {
+    /* 父元素多的部分平分了, flex: 1 1 auto   flex-grow flex-shrink flex-basis */
+    /* flex: auto; */
+    /* flex: 1 1 0% 初始设为0 子元素平分空间了*/
+    flex: 1
+  }
+
+  .a {
+    width: 50px;
+  }
+
+  .b {
+    width: 50px;
+  }
+
+  .c {
+    width: 100px;
+  }
+</style>
+
+<body>
+  <div id="container">
+    <div class="child a"></div>
+    <div class="child b"></div>
+    <div class="child c"></div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue组件</title>
+</head>
+
+<body>
+
+  <div id="blog-post-demo" :style="{fontSize: postFontSize +'em'}">
+
+    <!-- template的属性能直接放在这里 -->
+    <!-- 这里传递到component父组件 -->
+    <!-- <blog-post title="this is One"></blog-post> -->
+    <!-- 父组件传递到template内 -->
+    <!-- <blog-post title="this is Two"></blog-post> -->
+    <!-- <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title" :message="post.message"></blog-post> -->
+    <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-on:enlarge-text="fatherFuc">
+    </blog-post>
+    <!-- post数据传入父组件中叫做‘post’的数据, 用到模板里 v-bind: templatePropName:'dataName'-->
+    <!-- 
+      1. v-for和v-if
+      2. v-bind动态传递props
+      3. prop （推荐你回来把prop读完)
+      4. 
+     -->
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  Vue.component('blog-post', {
+    // props: ['title', 'message'], // 可以改写一下
+    props: ['post'],
+    template: `
+    <div>
+      <h3>{{post.title}}</h3>
+      <button v-on:click="$emit('enlarge-text')">
+      Enlarge text
+      </button>
+      <p>{{post.message}}</p>
+    </div>
+    `
+  })
+
+  new Vue({
+    el: '#blog-post-demo',
+    data: {
+      posts: [
+        { id: 1, title: 'My journey with Vue', message: 'Tittle One' },
+        { id: 2, title: 'Blogging with Vue', message: 'Tittle Two' },
+        { id: 3, title: 'Why Vue is so fun', message: 'Tittle Three' }
+      ],
+      postFontSize: 1
+    },
+    methods: {
+      fatherFuc: function () {
+        this.postFontSize += 0.1
+        console.log(this.postFontSize);
+      }
+    }
+  })
+</script>
+
+</html>
+
+<!-- 
+  template里面是子
+  使用components的场景是父
+ -->
+
+
+<!-- 
+   总结：
+   1. template内单个根元素div/*---*/div包裹
+   2. JavaScript的模板字符串
+   3. props
+   4. $emit触发事件, $emit('enlarge-text', 0.1)
+      (1) 还可以接收一个参数
+      (2) 第一种用$event在标签上接收,第二种用函数接收参数
+      (3) 父组件上要v-on:eventName='pageFontSize += $event' or @eventName='FatherMethods'
+  -->

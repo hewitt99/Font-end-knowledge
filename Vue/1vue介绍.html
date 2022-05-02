@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue介绍</title>
+</head>
+
+<body>
+  <h1>介绍</h1>
+  <h2>声明式渲染</h2>
+  <p>Vue.js的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统</p>
+  <div id="app">
+    {{ message }}
+  </div>
+  <p>注意我们不再和 HTML 直接交互了。
+    一个 Vue 应用会将其挂载到一个 DOM 元素上 (对于这个例子是 #app) 然后对其进行完全控制。
+    那个 HTML 是我们的入口，但其余都会发生在新创建的 Vue 实例内部。</p>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  var obj = new Vue({
+    el: '#app',
+    data() {
+      return {
+        message: '声明式渲染'
+
+      }
+    }
+  })
+</script>
+
+</html>

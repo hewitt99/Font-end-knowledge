@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue实例</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{ foo }}</p>
+    <button v-on:click="changeFoo">Change</button>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script>
+  let obj = {
+    foo: 'bar',
+    flag: true
+  }
+
+  Object.freeze(obj)
+  let vm = new Vue({
+    el: '#app',
+    data: obj,
+    methods: {
+      changeFoo: function () {
+        if (this.flag) {
+          this.foo = 'nav'
+        } else {
+          this.foo = 'bar'
+        }
+        this.flag = !this.flag;
+      }
+    }
+  })
+
+
+</script>
+
+</html>
