@@ -48,16 +48,20 @@ function getReverse(head) {
 function getMerged(old, now) {
   // 第二段 >= 第一段
   const head = old
-  while (now) {
+  while (old) {
     let temp1 = old.next
-    let temp2 = now ? now.next : null
+    let temp2 = now.next
 
-    old.next = now
-    if (now) {
+    // 否则break
+    if (temp1 === temp2 || temp1 === now) {
+      old.next = now
+      break
+    } else {
+      old.next = now
       now.next = temp1
+      old = temp1
+      now = temp2
     }
-    old = temp1
-    now = temp2
   }
   return head
 }
