@@ -1,0 +1,9 @@
+从基本规格上划分：压缩是否有损，颜色使用策略，绘图方式
+1.压缩有损：jpg
+  无损：png、gif
+2.索引色（index color）通过数字对应一个颜色：gif、png-8、gif
+  直接色（direc color）rgba：jpg、png-24
+3.绘图点阵图：px：jpg、png、gif
+  矢量图：记录图片线条的绘制方法、路径，放大不会失真：svg
+
+WebP：无损/有损、压缩更小
