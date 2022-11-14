@@ -1,5 +1,5 @@
 # Font-end-knowledge
-my way  to learn font-end
+初学
 ## this is my repository
 - 学习html/css
 - 学习Javascript
